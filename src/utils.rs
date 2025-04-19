@@ -125,7 +125,7 @@ fn index_functions() {
 pub fn vec3_to_index(pos: IVec3, bounds: i32) -> usize {
     let x_i = pos.x % bounds;
     // let y_i = (pos.y * bounds) % bounds;
-    let y_i = (pos.y * bounds);
+    let y_i = pos.y * bounds;
     let z_i = pos.z * (bounds * bounds);
     // let x_i = pos.x % bounds;
     // let y_i = (pos.y / bounds) % bounds;

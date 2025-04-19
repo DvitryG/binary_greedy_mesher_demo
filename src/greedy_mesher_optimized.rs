@@ -1,14 +1,11 @@
-use std::{
-    collections::VecDeque,
-    time::{Duration, Instant},
-};
+use std::collections::VecDeque;
 
 use bevy::{math::ivec3, prelude::*, utils::HashMap};
 
 use crate::{
     chunk_mesh::ChunkMesh,
     chunks_refs::ChunksRefs,
-    constants::{ADJACENT_AO_DIRS, CHUNK_SIZE, CHUNK_SIZE_P, CHUNK_SIZE_P2, CHUNK_SIZE_P3},
+    constants::{ADJACENT_AO_DIRS, CHUNK_SIZE, CHUNK_SIZE_P},
     face_direction::FaceDir,
     lod::Lod,
     utils::{generate_indices, make_vertex_u32, vec3_to_index},
@@ -91,8 +88,8 @@ pub fn build_chunk_mesh(chunks_refs: &ChunksRefs, lod: Lod) -> Option<ChunkMesh>
 
     // face culling
     for axis in 0..3 {
-        for z in 0..CHUNK_SIZE_P {
-            for x in 0..CHUNK_SIZE_P {
+        for z in 1..=CHUNK_SIZE {
+            for x in 1..=CHUNK_SIZE {
                 // set if current is solid, and next is air
                 let col = axis_cols[axis][z][x];
 
